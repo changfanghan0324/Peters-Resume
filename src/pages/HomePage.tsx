@@ -27,7 +27,7 @@ export default function HomePage() {
 
   const activeIndex = Math.min(experiences.length - 1, Math.round(progress * (experiences.length - 1)))
   const active = experiences[hovered ?? activeIndex]
-  const isHero = progress < 0.055
+  const isHero = progress < 0.045 && hovered === null
 
   const jump = useCallback((index: number) => {
     const max = document.documentElement.scrollHeight - window.innerHeight
@@ -36,7 +36,7 @@ export default function HomePage() {
 
   const beginJourney = useCallback(() => {
     const max = document.documentElement.scrollHeight - window.innerHeight
-    window.scrollTo({ top: max * 0.06, behavior: 'smooth' })
+    window.scrollTo({ top: max * (1 / (experiences.length - 1)), behavior: 'smooth' })
   }, [])
 
   const sceneKey = useMemo(() => `${active.slug}-${language}-${hovered ?? 'active'}`, [active.slug, language, hovered])
@@ -44,7 +44,7 @@ export default function HomePage() {
   return (
     <main className="journey-page">
       <Header onJump={jump} />
-      <div className="canvas-layer" aria-hidden="true">
+      <div className="canvas-layer">
         <Suspense fallback={<div className="canvas-loading" />}>
           <JourneyCanvas experiences={experiences} progress={progress} activeIndex={activeIndex} onHover={setHovered} onOpen={(slug) => navigate(`/experience/${slug}`)} />
         </Suspense>
@@ -63,7 +63,7 @@ export default function HomePage() {
             </motion.section>
           ) : (
             <motion.section className="chapter-panel" key={sceneKey} initial={{ opacity: 0, x: -28 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} transition={{ duration: 0.35 }}>
-              <div className="chapter-year">{active.year}</div>
+              <div className="chapter-marker"><span>{String((hovered ?? activeIndex) + 1).padStart(2, '0')} / {String(experiences.length).padStart(2, '0')}</span><i /> <b>{active.year}</b></div>
               <h2>{copy(active.title, language)}</h2>
               <p className="chapter-role">{copy(active.role, language)}</p>
               <p className="chapter-summary">{copy(active.summary, language)}</p>
@@ -84,7 +84,7 @@ export default function HomePage() {
           )}
         </AnimatePresence>
 
-        <div className="scroll-cue"><Mouse size={22} /><span>{language === 'en' ? 'Scroll to travel' : '滾動探索路徑'}</span></div>
+        <div className={`scroll-cue ${isHero ? '' : 'travelling'}`}><Mouse size={22} /><span>{language === 'en' ? 'Scroll to travel' : '滾動探索路徑'}</span></div>
       </div>
       <ProgressRail progress={progress} onJump={jump} />
       <div className="scroll-space" />

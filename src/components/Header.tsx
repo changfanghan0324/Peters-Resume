@@ -13,7 +13,10 @@ export default function Header({ onJump }: HeaderProps) {
   const onHomeNav = (index: number) => {
     if (location.pathname !== '/') {
       navigate('/')
-      window.setTimeout(() => onJump?.(index), 50)
+      window.setTimeout(() => {
+        const max = document.documentElement.scrollHeight - window.innerHeight
+        window.scrollTo({ top: max * (index / 9), behavior: 'smooth' })
+      }, 350)
       return
     }
     onJump?.(index)
@@ -24,13 +27,13 @@ export default function Header({ onJump }: HeaderProps) {
       <Link className="brand" to="/" aria-label="Fang Han Chang home">
         <span>FH</span><i>/</i><b>26</b>
       </Link>
-      {location.pathname === '/' && (
-        <nav aria-label="Main navigation">
-          <button onClick={() => onHomeNav(0)}>Journey</button>
-          <button onClick={() => onHomeNav(3)}>Work</button>
-          <button onClick={() => onHomeNav(6)}>About</button>
-        </nav>
-      )}
+      <nav aria-label="Main navigation">
+        <button className={location.pathname === '/' ? 'active' : ''} onClick={() => onHomeNav(0)}>Journey</button>
+        <button onClick={() => onHomeNav(6)}>Work</button>
+        <Link className={location.pathname === '/skills' ? 'active' : ''} to="/skills">Skills</Link>
+        <button onClick={() => onHomeNav(9)}>About</button>
+      </nav>
+      <Link className={`mobile-skills-link ${location.pathname === '/skills' ? 'active' : ''}`} to="/skills">Skills</Link>
       <div className="header-actions">
         <div className="language-toggle" aria-label="Language">
           <button className={language === 'en' ? 'active' : ''} onClick={() => setLanguage('en')}>EN</button>
