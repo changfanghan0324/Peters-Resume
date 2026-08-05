@@ -22,9 +22,9 @@ pnpm build
 pnpm preview
 ```
 
-## GitHub Pages
+## Deployment
 
-Push the repository to GitHub, then enable **Settings → Pages → Source: GitHub Actions**. The included workflow builds and deploys the site automatically on pushes to `main`.
+The `main` branch is connected to Vercel. Every GitHub push automatically creates a new production deployment at [peters-resume.vercel.app](https://peters-resume.vercel.app).
 
 ## Design system
 
