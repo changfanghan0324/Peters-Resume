@@ -18,6 +18,10 @@ export default function DetailPage() {
   if (!item) return <Navigate to="/" replace />
   const index = experiences.indexOf(item)
   const next = experiences[(index + 1) % experiences.length]
+  const sectionLabels = item.sectionLabels?.[language] ?? (language === 'en'
+    ? ['The challenge', 'What I built', 'Outcome']
+    : ['挑戰', '我建立了什麼', '成果'])
+  const isOrigins = item.slug === 'taiwan-origins'
 
   return (
     <main className="detail-page">
@@ -47,9 +51,9 @@ export default function DetailPage() {
 
         <section className="story-grid">
           <div className="story-copy">
-            <article><h2>{language === 'en' ? 'The challenge' : '挑戰'}</h2><p>{copy(item.challenge, language)}</p></article>
-            <article><h2>{language === 'en' ? 'What I built' : '我建立了什麼'}</h2><p>{copy(item.built, language)}</p></article>
-            <article><h2>{language === 'en' ? 'Outcome' : '成果'}</h2><p>{copy(item.outcome, language)}</p></article>
+            <article><h2>{sectionLabels[0]}</h2><p>{copy(item.challenge, language)}</p></article>
+            <article><h2>{sectionLabels[1]}</h2><p>{copy(item.built, language)}</p></article>
+            <article><h2>{sectionLabels[2]}</h2><p>{copy(item.outcome, language)}</p></article>
           </div>
           <div className="highlights">
             <h2>{language === 'en' ? 'In focus' : '重點'}</h2>
@@ -58,18 +62,18 @@ export default function DetailPage() {
         </section>
 
         <section className="selected-work">
-          <div className="section-heading"><h2>{language === 'en' ? 'Selected work' : '精選作品'}</h2><span>{language === 'en' ? 'Interactive evidence' : '互動成果'}</span></div>
+          <div className="section-heading"><h2>{isOrigins ? (language === 'en' ? 'Life path' : '人生路徑') : (language === 'en' ? 'Selected work' : '精選作品')}</h2><span>{isOrigins ? (language === 'en' ? 'From Taiwan onward' : '從台灣出發') : (language === 'en' ? 'Interactive evidence' : '互動成果')}</span></div>
           {item.slug === 'investment-calculator' ? <InvestmentDemo language={language} /> : (
             <div className="evidence-stage">
               <img src={assetUrl(item.scene)} alt="" />
-              <div><p>{copy(item.built, language)}</p><span><ExternalLink size={15} /> {language === 'en' ? 'Project artifacts will be added as they are published.' : '更多作品檔案將於發布後持續更新。'}</span></div>
+              <div><p>{copy(item.built, language)}</p><span><ExternalLink size={15} /> {isOrigins ? (language === 'en' ? 'This timeline will continue to grow as new chapters are added.' : '這條時間線會隨新篇章持續更新。') : (language === 'en' ? 'Project artifacts will be added as they are published.' : '更多作品檔案將於發布後持續更新。')}</span></div>
             </div>
           )}
         </section>
 
         <section className="skills-credentials">
-          <div><h2>{language === 'en' ? 'Skills' : '技能'}</h2><div className="skill-list">{item.skills.map((skill) => <span key={skill}>{skill}</span>)}</div></div>
-          <div><h2>{language === 'en' ? 'Credentials' : '證書與學歷'}</h2>{item.credentials?.length ? <div className="credential-list">{item.credentials.map((credential) => <span key={credential}>{credential}</span>)}</div> : <p className="muted">{language === 'en' ? 'Certificate and work-file slots are ready for future uploads.' : '已保留證書與作品檔案位置，方便未來上傳。'}</p>}</div>
+          <div><h2>{item.skillLabel ? copy(item.skillLabel, language) : (language === 'en' ? 'Skills' : '技能')}</h2><div className="skill-list">{item.skills.map((skill) => <span key={skill}>{skill}</span>)}</div></div>
+          <div><h2>{item.credentialLabel ? copy(item.credentialLabel, language) : (language === 'en' ? 'Credentials' : '證書與學歷')}</h2>{item.credentials?.length ? <div className="credential-list">{item.credentials.map((credential) => <span key={credential}>{credential}</span>)}</div> : <p className="muted">{language === 'en' ? 'Certificate and work-file slots are ready for future uploads.' : '已保留證書與作品檔案位置，方便未來上傳。'}</p>}</div>
         </section>
 
         <Link className="next-chapter" to={`/experience/${next.slug}`}>

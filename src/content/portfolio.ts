@@ -16,11 +16,36 @@ export type Experience = {
   highlights: Record<Language, string[]>
   skills: string[]
   credentials?: string[]
+  sectionLabels?: Record<Language, [string, string, string]>
+  skillLabel?: Localized
+  credentialLabel?: Localized
   scene: string
   links?: { label: string; href: string }[]
 }
 
 export const experiences: Experience[] = [
+  {
+    slug: 'taiwan-origins',
+    year: '2003',
+    title: { en: 'A beginning in Taiwan', zh: '從台灣開始的人生路徑' },
+    role: { en: 'Born March 24, 2003', zh: '出生於 2003 年 3 月 24 日' },
+    place: { en: 'Taiwan', zh: '台灣' },
+    period: { en: 'March 24, 2003', zh: '2003 年 3 月 24 日' },
+    summary: { en: 'The first point on a path that would later connect Taiwan, Utah, and Boston.', zh: '人生的第一個座標，後來一路連結台灣、猶他州與波士頓。' },
+    challenge: { en: 'I was born in Taiwan on March 24, 2003. This is the factual starting point of the journey.', zh: '我於 2003 年 3 月 24 日出生於台灣；這是整段人生路徑的真實起點。' },
+    built: { en: 'The timeline later moves from Taiwan to Orem, Utah, and Boston as education, leadership, and product work unfold.', zh: '隨著求學、領導與產品經驗展開，時間線從台灣延伸到猶他州 Orem，再到波士頓。' },
+    outcome: { en: 'A cross-regional perspective now connects the places, communities, and decisions represented throughout this portfolio.', zh: '跨地域的視角，逐漸串起這個作品集中出現的地方、社群與每一次選擇。' },
+    highlights: { en: ['Born March 24, 2003', 'Taiwan', 'Later: Utah and Boston'], zh: ['2003 年 3 月 24 日出生', '台灣', '後來前往猶他州與波士頓'] },
+    skills: ['Taiwan', 'Orem, Utah', 'Boston, Massachusetts'],
+    credentials: ['March 24, 2003', 'Taiwan'],
+    sectionLabels: {
+      en: ['Origins', 'The path expands', 'The thread forward'],
+      zh: ['起點', '路徑展開', '延續至今'],
+    },
+    skillLabel: { en: 'Places in this journey', zh: '人生路徑中的地點' },
+    credentialLabel: { en: 'At a glance', zh: '基本資訊' },
+    scene: 'assets/scenes/origins.png',
+  },
   {
     slug: 'asian-night-market',
     year: '2019',
@@ -133,6 +158,8 @@ export const experiences: Experience[] = [
 ]
 
 export const profile = {
+  birthDate: '2003-03-24',
+  birthPlace: 'Taiwan',
   email: 'chang324@bu.edu',
   phone: '385-477-9823',
   linkedin: 'https://linkedin.com/in/fang-han-chang-7657011b1',

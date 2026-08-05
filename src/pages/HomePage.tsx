@@ -34,6 +34,11 @@ export default function HomePage() {
     window.scrollTo({ top: max * (index / (experiences.length - 1)), behavior: 'smooth' })
   }, [])
 
+  const beginJourney = useCallback(() => {
+    const max = document.documentElement.scrollHeight - window.innerHeight
+    window.scrollTo({ top: max * 0.06, behavior: 'smooth' })
+  }, [])
+
   const sceneKey = useMemo(() => `${active.slug}-${language}-${hovered ?? 'active'}`, [active.slug, language, hovered])
 
   return (
@@ -52,7 +57,7 @@ export default function HomePage() {
               <h1>Fang Han Chang</h1>
               <h2>{language === 'en' ? 'Finance × Analytics × Product' : '財務 × 分析 × 產品'}</h2>
               <p>{language === 'en' ? 'I turn complex decisions into clear, useful products.' : '我把複雜的決策，轉化成清楚而實用的產品。'}</p>
-              <button className="primary-button" onClick={() => jump(1)}>
+              <button className="primary-button" onClick={beginJourney}>
                 {language === 'en' ? 'Begin the journey' : '開始這段旅程'} <ArrowRight size={20} />
               </button>
             </motion.section>

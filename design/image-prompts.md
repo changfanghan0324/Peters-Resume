@@ -10,6 +10,7 @@ All images were generated with the built-in Image Gen tool. Shared art direction
 
 ## Production scene assets
 
+- **Taiwan origins:** Miniature Taiwan island landscape on a museum plinth, a warm-lit home, sunrise horizon, and a single glowing path marker representing Fang Han Chang’s birth in Taiwan on March 24, 2003—without a baby portrait or invented childhood events.
 - **Night market:** Taiwanese night-market pavilion, eight vendor stalls, central organizer table, four-person planning team, and a large abstract crowd representing the 2019 Asian Night Market.
 - **Sukiya operations:** Open-cutaway restaurant during peak service, assistant manager coordinating kitchen and floor flow, cash reconciliation station, and three trainees.
 - **UVU community:** Contemporary campus pavilion, multicultural Chinese Club gathering, teaching board, event zones, and an organizer facilitating community growth.
