@@ -2,7 +2,6 @@ import { ArrowLeft, ArrowUpRight, Check, ExternalLink, Github, Handshake, Instag
 import { useEffect } from 'react'
 import { Navigate, Link, useParams } from 'react-router-dom'
 import Header from '../components/Header'
-import InvestmentDemo from '../components/InvestmentDemo'
 import { useLanguage } from '../content/language'
 import { copy, experiences, profile } from '../content/portfolio'
 
@@ -63,12 +62,10 @@ export default function DetailPage() {
 
         <section className="selected-work">
           <div className="section-heading"><h2>{isOrigins ? (language === 'en' ? 'Life path' : '人生路徑') : (language === 'en' ? 'Selected work' : '精選作品')}</h2><span>{isOrigins ? (language === 'en' ? 'From Taiwan onward' : '從台灣出發') : (language === 'en' ? 'Interactive evidence' : '互動成果')}</span></div>
-          {item.slug === 'investment-calculator' ? <InvestmentDemo language={language} /> : (
-            <div className="evidence-stage">
-              <img src={assetUrl(item.scene)} alt="" />
-              <div><p>{copy(item.built, language)}</p><span><ExternalLink size={15} /> {isOrigins ? (language === 'en' ? 'This timeline will continue to grow as new chapters are added.' : '這條時間線會隨新篇章持續更新。') : (language === 'en' ? 'Project artifacts will be added as they are published.' : '更多作品檔案將於發布後持續更新。')}</span></div>
-            </div>
-          )}
+          <div className="evidence-stage">
+            <img src={assetUrl(item.scene)} alt="" />
+            <div><p>{copy(item.built, language)}</p><span><ExternalLink size={15} /> {isOrigins ? (language === 'en' ? 'This timeline will continue to grow as new chapters are added.' : '這條時間線會隨新篇章持續更新。') : (language === 'en' ? 'Project artifacts will be added as they are published.' : '更多作品檔案將於發布後持續更新。')}</span></div>
+          </div>
         </section>
 
         <section className="skills-credentials">

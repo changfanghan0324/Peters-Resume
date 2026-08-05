@@ -17,6 +17,9 @@ All images were generated with the built-in Image Gen tool. Shared art direction
 - **Tutor platform:** Product studio with a central frosted-glass interface and three connected zones for tutor profiles, resources, and scheduling/communication.
 - **Mochilune:** Unbranded perfume bottle surrounded by market research, pricing comparisons, manufacturer samples, sourcing-map motif, and a deliberately closed validation gate.
 - **Investment calculator:** Three glass scenario towers, compound-growth curve, recurring-contribution markers, developer control table, and abstract projected-outcome chart.
+- **Investment research platform:** Financial-research studio combining company analysis, a three-layer DCF tower, peer-comparison columns, and a portfolio-risk constellation.
+- **Corporate credit model:** Institutional underwriting room with a transparent borrower building, debt stacks, lending balance, three-stage stress tunnel, covenant gate, and collateral vault.
+- **Corporate finance & FP&A platform:** CFO planning station linking price and volume drivers to revenue, budget-versus-actual analysis, a working-capital river, cash runway, and five scenario paths.
 - **Boston University:** Boston urban campus and analytics studio with forecasting and business-intelligence motifs, opening into a misty future pathway.
 
 Constraints repeated for every production asset: square isometric composition, complete diorama visible, natural edge blend into the background, no UI overlay, no stock-photo people, no neon cyberpunk treatment, and no invented brands or credentials.
