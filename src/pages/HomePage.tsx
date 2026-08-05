@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { ArrowRight, Github, Linkedin, Mail, Mouse } from 'lucide-react'
+import { ArrowRight, Github, Handshake, Instagram, Linkedin, Mail, Mouse } from 'lucide-react'
 import { lazy, Suspense, useCallback, useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Header from '../components/Header'
@@ -66,10 +66,13 @@ export default function HomePage() {
                 {language === 'en' ? 'More…' : '更多…'} <ArrowRight size={18} />
               </button>
               {activeIndex === experiences.length - 1 && (
-                <div className="contact-row">
-                  <a href={`mailto:${profile.email}`} aria-label="Email"><Mail size={18} /></a>
-                  <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={18} /></a>
-                  <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={18} /></a>
+                <div className="contact-links" aria-label={language === 'en' ? 'Connect with Fang Han Chang' : '聯絡 Fang Han Chang'}>
+                  <span className="contact-label">{language === 'en' ? 'Connect' : '聯絡我'}</span>
+                  <a href={`mailto:${profile.email}`}><Mail size={16} /><span>Email</span></a>
+                  <a href={profile.linkedin} target="_blank" rel="noreferrer"><Linkedin size={16} /><span>LinkedIn</span></a>
+                  <a href={profile.github} target="_blank" rel="noreferrer"><Github size={16} /><span>GitHub</span></a>
+                  <a href={profile.instagram} target="_blank" rel="noreferrer"><Instagram size={16} /><span>Instagram</span></a>
+                  <a href={profile.handshake} target="_blank" rel="noreferrer"><Handshake size={16} /><span>Handshake</span></a>
                 </div>
               )}
             </motion.section>

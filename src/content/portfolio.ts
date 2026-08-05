@@ -137,6 +137,8 @@ export const profile = {
   phone: '385-477-9823',
   linkedin: 'https://linkedin.com/in/fang-han-chang-7657011b1',
   github: 'https://github.com/changfanghan0324',
+  instagram: 'https://www.instagram.com/rich_mochi7777/',
+  handshake: 'https://app.joinhandshake.com/profiles/6pqze6',
   location: 'Boston, MA',
 }
 

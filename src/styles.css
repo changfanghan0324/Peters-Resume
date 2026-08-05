@@ -74,9 +74,10 @@ a { color: inherit; text-decoration: none; }
 .text-button { display: inline-flex; align-items: center; gap: 18px; padding: 9px 0; border: 0; border-bottom: 1px solid var(--amber); background: none; color: var(--amber); cursor: pointer; }
 .text-button svg { transition: transform .2s ease; }
 .text-button:hover svg { transform: translateX(5px); }
-.contact-row { display: flex; gap: 12px; margin-top: 24px; }
-.contact-row a { width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: var(--mist); transition: all .2s ease; }
-.contact-row a:hover { color: var(--amber); border-color: var(--amber); }
+.contact-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 22px; row-gap: 7px; margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--line); }
+.contact-label { grid-column: 1 / -1; color: #6f8290; font-size: 10px; letter-spacing: .13em; text-transform: uppercase; margin-bottom: 3px; }
+.contact-links a { display: flex; align-items: center; gap: 9px; padding: 7px 0; color: var(--mist); font-size: 12px; border-bottom: 1px solid transparent; transition: color .2s ease, border-color .2s ease, transform .2s ease; }
+.contact-links a:hover, .contact-links a:focus-visible { color: var(--amber); border-color: rgba(240,168,90,.5); transform: translateX(3px); }
 .scroll-cue { position: fixed; left: 7vw; bottom: 4vh; display: flex; gap: 12px; align-items: center; color: var(--mist); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
 
 .progress-rail { position: fixed; z-index: 20; right: 2.6vw; top: 18vh; bottom: 10vh; width: 82px; pointer-events: none; }

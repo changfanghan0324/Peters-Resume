@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowUpRight, Check, ExternalLink, Github, Linkedin, Mail } from 'lucide-react'
+import { ArrowLeft, ArrowUpRight, Check, ExternalLink, Github, Handshake, Instagram, Linkedin, Mail } from 'lucide-react'
 import { useEffect } from 'react'
 import { Navigate, Link, useParams } from 'react-router-dom'
 import Header from '../components/Header'
@@ -78,7 +78,13 @@ export default function DetailPage() {
 
         <footer className="detail-footer">
           <span>© 2026 Fang Han Chang</span>
-          <div><a href={`mailto:${profile.email}`}><Mail size={17} /></a><a href={profile.linkedin} target="_blank" rel="noreferrer"><Linkedin size={17} /></a><a href={profile.github} target="_blank" rel="noreferrer"><Github size={17} /></a></div>
+          <div aria-label="Social links">
+            <a href={`mailto:${profile.email}`} aria-label="Email" title="Email"><Mail size={17} /></a>
+            <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" title="LinkedIn"><Linkedin size={17} /></a>
+            <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub"><Github size={17} /></a>
+            <a href={profile.instagram} target="_blank" rel="noreferrer" aria-label="Instagram" title="Instagram"><Instagram size={17} /></a>
+            <a href={profile.handshake} target="_blank" rel="noreferrer" aria-label="Handshake" title="Handshake"><Handshake size={17} /></a>
+          </div>
         </footer>
       </div>
     </main>
