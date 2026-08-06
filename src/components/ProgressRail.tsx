@@ -6,8 +6,7 @@ export default function ProgressRail({ progress, onJump }: { progress: number; o
       <div className="progress-line"><i style={{ width: `${progress * 100}%` }} /></div>
       <div className="progress-dots">
         {experiences.map((item, index) => {
-          const itemProgress = index / (experiences.length - 1)
-          const active = Math.abs(itemProgress - progress) < 0.085
+          const active = Math.round(progress * (experiences.length - 1)) === index
           return (
             <button key={item.slug} className={active ? 'active' : ''} onClick={() => onJump(index)} aria-label={`Go to ${item.year}`}>
               <span>{item.year.replace(' 2026', '')}</span>

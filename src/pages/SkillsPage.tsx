@@ -1,92 +1,39 @@
-import { motion } from 'framer-motion'
-import { ArrowLeft, ArrowUpRight } from 'lucide-react'
-import { useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { ArrowRight, ArrowUpRight, CircleCheck, FlaskConical } from 'lucide-react'
+import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Header from '../components/Header'
-
-const skillGroups = [
-  {
-    number: '01',
-    title: 'Finance',
-    color: 'amber',
-    description: 'Understanding the decision behind the numbers.',
-    skills: ['Financial Statement Analysis', 'DCF Valuation', 'Comparable Company Analysis', 'Portfolio Analytics', 'Corporate Credit Analysis', 'Credit Underwriting', 'FP&A', 'Forecasting', 'Working Capital Management'],
-  },
-  {
-    number: '02',
-    title: 'Analytics',
-    color: 'coral',
-    description: 'Turning uncertainty into explainable evidence.',
-    skills: ['Scenario Analysis', 'Risk Modeling', 'Time-Series Analysis', 'Variance Analysis', 'Sensitivity Analysis', 'Correlation Analysis', 'Dashboarding'],
-  },
-  {
-    number: '03',
-    title: 'Technology',
-    color: 'teal',
-    description: 'Building the systems that make analysis useful.',
-    skills: ['Python', 'pandas', 'NumPy', 'SQL', 'PostgreSQL', 'TypeScript', 'React', 'Next.js', 'FastAPI', 'Power BI', 'Excel', 'DAX', 'Git & GitHub'],
-  },
-  {
-    number: '04',
-    title: 'Business & Communication',
-    color: 'green',
-    description: 'Moving from insight to a clear next action.',
-    skills: ['Financial Storytelling', 'Decision Support', 'Product Development', 'Executive Presentation', 'Analytical Communication', 'Project Management'],
-  },
-]
+import { capabilities, capabilityCategories, type CapabilityCategory, type CapabilityStatus } from '../content/capabilities'
 
 export default function SkillsPage() {
-  const [activeSkill, setActiveSkill] = useState('Financial Statement Analysis')
+  const [status, setStatus] = useState<CapabilityStatus>('demonstrated')
+  const [category, setCategory] = useState<CapabilityCategory>('Finance')
+  const visible = useMemo(() => capabilities.filter((item) => item.status === status && item.category === category), [status, category])
+  const [selectedName, setSelectedName] = useState('Corporate Finance')
+  const selected = visible.find((item) => item.name === selectedName) ?? visible[0]
+
+  const chooseStatus = (next: CapabilityStatus) => { setStatus(next); const first = capabilities.find((item) => item.status === next && item.category === category); if (first) setSelectedName(first.name) }
+  const chooseCategory = (next: CapabilityCategory) => { setCategory(next); const first = capabilities.find((item) => item.status === status && item.category === next); if (first) setSelectedName(first.name) }
 
   return (
-    <main className="skills-page">
+    <main className="capability-page">
       <Header />
-      <div className="skills-landscape" aria-hidden="true">
-        <img className="skills-scene skills-scene-a" src="./assets/scenes/bu.png" alt="" />
-        <img className="skills-scene skills-scene-b" src="./assets/scenes/origins.png" alt="" />
-        <div className="skills-sun" />
-      </div>
-
-      <div className="skills-content">
-        <motion.header initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} className="skills-intro">
-          <Link to="/" className="skills-back"><ArrowLeft size={15} /> Back to the journey</Link>
-          <span className="section-kicker">Current toolkit · 2026</span>
-          <h1>Skills built along<br />the way.</h1>
-          <p>Finance provides the questions. Analytics finds the evidence. Technology turns both into products people can use.</p>
-        </motion.header>
-
-        <div className="skill-terraces">
-          {skillGroups.map((group, index) => (
-            <motion.section
-              className={`skill-terrace ${group.color}`}
-              key={group.title}
-              initial={{ opacity: 0, x: index % 2 ? 28 : -28 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.12 + index * 0.09 }}
-            >
-              <div className="terrace-heading">
-                <span>{group.number}</span>
-                <div><h2>{group.title}</h2><p>{group.description}</p></div>
-              </div>
-              <div className="terrace-skills">
-                {group.skills.map((skill) => (
-                  <button
-                    key={skill}
-                    className={activeSkill === skill ? 'active' : ''}
-                    onMouseEnter={() => setActiveSkill(skill)}
-                    onFocus={() => setActiveSkill(skill)}
-                    onClick={() => setActiveSkill(skill)}
-                  >{skill}<ArrowUpRight size={13} /></button>
-                ))}
-              </div>
-            </motion.section>
-          ))}
+      <div className="capability-landscape" aria-hidden="true"><img src="./assets/scenes/bu.png" alt="" /></div>
+      <div className="capability-content">
+        <header className="capability-intro"><h1>Capability grows<br />through evidence.</h1><p>Explore what I can demonstrate today and what I am deliberately strengthening through current projects.</p></header>
+        <div className="capability-status" aria-label="Capability status">
+          <button className={status === 'demonstrated' ? 'active' : ''} onClick={() => chooseStatus('demonstrated')}><CircleCheck size={17} /><span>01</span>Demonstrated</button>
+          <button className={status === 'developing' ? 'active developing' : 'developing'} onClick={() => chooseStatus('developing')}><FlaskConical size={17} /><span>02</span>In development</button>
         </div>
-
-        <footer className="skills-footer">
-          <span>Selected skill</span><strong>{activeSkill}</strong>
-          <Link to="/">Continue the journey <ArrowUpRight size={18} /></Link>
-        </footer>
+        <div className="capability-categories" aria-label="Skill categories">{capabilityCategories.map((item) => <button key={item} className={category === item ? 'active' : ''} onClick={() => chooseCategory(item)}>{item}</button>)}</div>
+        <div className="capability-explorer">
+          <div className="capability-rail">{visible.map((item) => <button key={item.name} className={item.name === selected.name ? 'active' : ''} onClick={() => setSelectedName(item.name)} onMouseEnter={() => setSelectedName(item.name)}><i />{item.name}</button>)}</div>
+          <AnimatePresence mode="wait"><motion.aside className="evidence-drawer" key={`${status}-${selected.name}`} initial={{ opacity: 0, x: 18 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -12 }}>
+            <span>{status === 'demonstrated' ? 'Evidence-backed capability' : 'Development status'}</span><h2>{selected.name}</h2><strong>{selected.evidence}</strong><p>{selected.detail}</p>
+            {selected.href.startsWith('http') ? <a href={selected.href} target="_blank" rel="noreferrer">Open evidence <ArrowUpRight size={16} /></a> : <Link to={selected.href}>Open evidence <ArrowRight size={16} /></Link>}
+          </motion.aside></AnimatePresence>
+        </div>
+        <footer className="capability-footer"><p>In-development skills are intentionally separated from demonstrated capabilities. No proficiency percentages or “advanced” labels are used.</p><Link to="/strengths">Explore CliftonStrengths <ArrowRight size={17} /></Link></footer>
       </div>
     </main>
   )

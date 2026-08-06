@@ -1,48 +1,41 @@
-import { Download } from 'lucide-react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Download, Menu, X } from 'lucide-react'
+import { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { useLanguage } from '../content/language'
 
-type HeaderProps = {
-  onJump?: (index: number) => void
-}
+const navItems = [
+  { label: 'Journey', to: '/' },
+  { label: 'Experience', to: '/experience' },
+  { label: 'Projects', to: '/projects' },
+  { label: 'Skills', to: '/skills' },
+  { label: 'Strengths', to: '/strengths' },
+]
 
-export default function Header({ onJump }: HeaderProps) {
+export default function Header({ onJump }: { onJump?: (index: number) => void }) {
   const { language, setLanguage } = useLanguage()
   const location = useLocation()
-  const navigate = useNavigate()
-  const onHomeNav = (index: number) => {
-    if (location.pathname !== '/') {
-      navigate('/')
-      window.setTimeout(() => {
-        const max = document.documentElement.scrollHeight - window.innerHeight
-        window.scrollTo({ top: max * (index / 9), behavior: 'smooth' })
-      }, 350)
-      return
-    }
-    onJump?.(index)
+  const [open, setOpen] = useState(false)
+
+  const journeyClick = () => {
+    setOpen(false)
+    if (location.pathname === '/') onJump?.(0)
   }
 
   return (
     <header className="site-header">
-      <Link className="brand" to="/" aria-label="Fang Han Chang home">
-        <span>FH</span><i>/</i><b>26</b>
-      </Link>
+      <Link className="brand" to="/" onClick={journeyClick} aria-label="Fang Han Chang home"><span>FH</span><i>/</i><b>26</b></Link>
       <nav aria-label="Main navigation">
-        <button className={location.pathname === '/' ? 'active' : ''} onClick={() => onHomeNav(0)}>Journey</button>
-        <button onClick={() => onHomeNav(6)}>Work</button>
-        <Link className={location.pathname === '/skills' ? 'active' : ''} to="/skills">Skills</Link>
-        <button onClick={() => onHomeNav(9)}>About</button>
+        {navItems.map((item) => <Link key={item.to} className={location.pathname === item.to ? 'active' : ''} to={item.to} onClick={item.to === '/' ? journeyClick : undefined}>{item.label}</Link>)}
       </nav>
-      <Link className={`mobile-skills-link ${location.pathname === '/skills' ? 'active' : ''}`} to="/skills">Skills</Link>
+      <button className="mobile-menu-button" onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-controls="mobile-navigation" aria-label={open ? 'Close navigation' : 'Open navigation'}>{open ? <X size={19} /> : <Menu size={19} />}</button>
       <div className="header-actions">
         <div className="language-toggle" aria-label="Language">
-          <button className={language === 'en' ? 'active' : ''} onClick={() => setLanguage('en')}>EN</button>
-          <span>/</span>
-          <button className={language === 'zh' ? 'active' : ''} onClick={() => setLanguage('zh')}>中文</button>
+          <button className={language === 'en' ? 'active' : ''} onClick={() => setLanguage('en')}>EN</button><span>/</span><button className={language === 'zh' ? 'active' : ''} onClick={() => setLanguage('zh')}>中文</button>
         </div>
-        <a className="resume-link" href="./Fang-Han-Chang-Resume.pdf" download>
-          <Download size={15} /> <span>Résumé</span>
-        </a>
+        <a className="resume-link" href="./Fang-Han-Chang-Resume.pdf" download><Download size={15} /> <span>Résumé</span></a>
+      </div>
+      <div id="mobile-navigation" className={`mobile-navigation ${open ? 'open' : ''}`}>
+        {navItems.map((item) => <Link key={item.to} className={location.pathname === item.to ? 'active' : ''} to={item.to} onClick={() => { setOpen(false); if (item.to === '/') journeyClick() }}>{item.label}</Link>)}
       </div>
     </header>
   )
