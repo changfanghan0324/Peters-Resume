@@ -1,0 +1,25 @@
+.header-contact-cta {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ef7a5a;
+  border-radius: 999px;
+  padding: 0 16px;
+  color: #fffaf0;
+  background: #ef7a5a;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.header-contact-cta:hover,
+.header-contact-cta:focus-visible { color: #0c3551; background: #f5a936; border-color: #f5a936; }
+.mobile-contact-cta { margin-top: 10px; color: #fffaf0 !important; background: #ef7a5a; text-align: center; }
+
+@media (max-width: 960px) {
+  .header-contact-cta { padding-inline: 12px; font-size: 11px; }
+}
+
+@media (max-width: 600px) {
+  .header-contact-cta { display: none; }
+}
