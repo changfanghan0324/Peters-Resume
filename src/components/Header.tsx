@@ -9,8 +9,7 @@ export default function Header({ onJump }: { onJump?: (index: number) => void })
   const navigate = useNavigate()
   const [open, setOpen] = useState(false)
   const navItems = [
-    { key: 'overview', to: '/' }, { key: 'experience', to: '/experience' }, { key: 'projects', to: '/projects' },
-    { key: 'capabilities', to: '/capabilities' }, { key: 'about', to: '/about' }, { key: 'journey', to: '/journey' }, { key: 'contact', to: '/contact' },
+    { key: 'work', to: '/projects' }, { key: 'experience', to: '/experience' }, { key: 'journey', to: '/journey' }, { key: 'about', to: '/about' },
   ] as const
   const label = (key: typeof navItems[number]['key']) => t.nav[key]
   const isActive = (to: string) => to === '/' ? /\/en$|\/zh-tw$/.test(location.pathname) : location.pathname.endsWith(to) || location.pathname.includes(`${to}/`)
@@ -27,6 +26,7 @@ export default function Header({ onJump }: { onJump?: (index: number) => void })
         </nav>
         <button className="mobile-menu-button" onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-controls="mobile-navigation" aria-label={open ? t.nav.close : t.nav.menu}>{open ? <X size={19} aria-hidden="true" /> : <Menu size={19} aria-hidden="true" />}</button>
         <div className="header-actions">
+          <Link className="header-contact-cta" to={pathFor('/contact', language)} onClick={() => setOpen(false)}>{t.nav.contact}</Link>
           <div className="language-toggle" aria-label={t.nav.language}>
             <button className={language === 'en' ? 'active' : ''} onClick={() => switchLanguage('en')} aria-pressed={language === 'en'}>EN</button><span aria-hidden="true">/</span><button className={language === 'zh' ? 'active' : ''} onClick={() => switchLanguage('zh')} aria-pressed={language === 'zh'}>繁中</button>
           </div>
@@ -34,6 +34,7 @@ export default function Header({ onJump }: { onJump?: (index: number) => void })
         </div>
         <div id="mobile-navigation" className={`mobile-navigation ${open ? 'open' : ''}`}>
           {navItems.map((item) => <Link key={item.to} className={isActive(item.to) ? 'active' : ''} to={pathFor(item.to, language)} onClick={() => { setOpen(false); if (item.to === '/journey') journeyClick() }}>{label(item.key)}</Link>)}
+          <Link className="mobile-contact-cta" to={pathFor('/contact', language)} onClick={() => setOpen(false)}>{t.nav.contact}</Link>
         </div>
       </header>
     </>
