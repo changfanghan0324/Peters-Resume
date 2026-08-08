@@ -89,9 +89,9 @@
 .journey-chapter-copy h2 { margin: 0 0 16px; color: #0c3551; font-size: clamp(30px, 3.5vw, 54px); line-height: 1; }
 .journey-chapter-intro h2 { color: #c55e38; font-family: inherit; font-size: clamp(20px, 2vw, 28px); font-weight: 700; letter-spacing: .01em; }
 .journey-intro-description,
-.journey-chapter-summary { max-width: 500px; margin: 0 0 24px; color: #315d6c; font-size: 16px; line-height: 1.7; }
+.journey-chapter-summary { max-width: 500px; margin: 0 0 24px; color: #315d6c; font-size: 17px; line-height: 1.7; }
 .journey-intro-description { margin: 0 0 28px; }
-.journey-chapter-role { margin: 0 0 12px; color: #b55b35; font-size: 14px; font-weight: 700; line-height: 1.5; }
+.journey-chapter-role { margin: 0 0 16px; color: #b55b35; font-size: 16px; font-weight: 700; line-height: 1.5; }
 .journey-begin { color: #fffaf0; background: #0c3551; border-color: #0c3551; }
 .journey-begin:hover, .journey-begin:focus-visible { color: #0c3551; background: #f5a936; border-color: #f5a936; }
 .journey-chapter-marker { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
@@ -114,16 +114,16 @@
   z-index: 20;
   left: 7vw;
   right: 7vw;
-  bottom: 22px;
-  height: 66px;
+  top: 82px;
+  height: 84px;
   pointer-events: none;
 }
 
 .progress-line {
   position: absolute;
-  left: 22px;
-  right: 22px;
-  top: 26px;
+  left: calc(-1 * 7vw);
+  right: calc(-1 * 7vw);
+  top: 24px;
   height: 2px;
   overflow: hidden;
   background: rgba(12, 53, 81, .24);
@@ -138,8 +138,18 @@
   transition: transform 180ms ease-out;
 }
 
-.progress-dots { position: absolute; inset: 0; display: flex; justify-content: space-between; align-items: flex-start; overflow-x: auto; scrollbar-width: none; }
-.progress-dots::-webkit-scrollbar { display: none; }
+.progress-dots {
+  --journey-gap: clamp(52px, 6vw, 108px);
+  position: absolute;
+  top: 0;
+  left: calc(-1 * 7vw);
+  display: flex;
+  width: max-content;
+  align-items: flex-start;
+  gap: var(--journey-gap);
+  transform: translateX(calc(50vw - 22px - (var(--journey-index) * (44px + var(--journey-gap)))));
+  transition: transform 280ms ease-out;
+}
 .progress-dots button {
   position: relative;
   pointer-events: auto;
@@ -154,25 +164,31 @@
   cursor: pointer;
 }
 
-.progress-dots button::after { content: ''; position: absolute; inset: 13px; border-radius: 50%; background: transparent; }
-.progress-dots button span { position: absolute; top: 48px; left: 50%; width: max-content; transform: translateX(-50%); color: #315d6c; font-size: 10px; font-weight: 700; }
+.progress-dots button > i { position: absolute; inset: 13px; border-radius: 50%; background: transparent; }
+.progress-dots button span { position: absolute; top: 51px; left: 50%; width: max-content; max-width: 140px; transform: translateX(-50%); overflow: hidden; color: #315d6c; font-size: 11px; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
 .progress-dots button.active { border-color: #b55b35; color: #0c3551; }
-.progress-dots button.active::after { background: #ef7a5a; }
+.progress-dots button.active > i { background: #ef7a5a; }
 .progress-dots button:focus-visible { outline: 3px solid #f5a936; outline-offset: 3px; }
+
+.journey-skip { position: fixed; z-index: 21; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.journey-skip:focus { top: 100px; left: 7vw; width: auto; height: auto; clip: auto; padding: 8px 12px; color: #0c3551; background: #fffaf0; font-size: 12px; font-weight: 700; white-space: normal; }
+.journey-skip:hover, .journey-skip:focus-visible { color: #b55b35; }
 
 @media (max-width: 800px) {
   .journey-chapter-section,
-  .journey-chapter-intro { min-height: 94svh; align-items: end; justify-items: start; padding: 116px 22px 118px; }
+  .journey-chapter-intro { min-height: auto; align-items: start; justify-items: start; padding: 146px 22px 148px; }
   .journey-chapter-section:nth-child(even) { justify-items: start; }
   .journey-chapter-copy { width: 100%; padding: 23px 22px 24px; }
   .journey-chapter-copy h1 { font-size: clamp(47px, 14vw, 72px); }
   .journey-chapter-copy h2 { font-size: clamp(29px, 9vw, 42px); }
-  .journey-intro-description, .journey-chapter-summary { font-size: 15px; }
+  .journey-intro-description, .journey-chapter-summary { font-size: 16px; }
+  .journey-chapter-role { font-size: 16px; }
   .journey-scene-tint { background: linear-gradient(0deg, rgba(244, 250, 242, .98) 0%, rgba(244, 250, 242, .84) 45%, rgba(244, 250, 242, .12) 100%); }
   .journey-path { opacity: .54; }
-  .progress-rail { left: 16px; right: 16px; bottom: 15px; height: 56px; }
-  .progress-line { left: 22px; right: 22px; top: 21px; }
-  .progress-dots button span { display: none; }
+  .progress-rail { left: 16px; right: 16px; top: 70px; height: 70px; }
+  .progress-line { left: -16px; right: -16px; top: 21px; }
+  .progress-dots { --journey-gap: 54px; left: -16px; }
+  .progress-dots button span { top: 49px; max-width: 74px; font-size: 10px; }
   .progress-dots button { width: 44px; height: 44px; }
   .journey-scroll-cue { display: none; }
   .journey-scene-fallback { right: 16px; bottom: 82px; }

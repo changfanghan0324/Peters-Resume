@@ -59,7 +59,7 @@ network conditions.
 
 ## Fix acceptance targets
 
-The replacement must use nine normal chapter sections, IntersectionObserver
+The replacement uses normal chapter sections, IntersectionObserver
 chapter selection, a two-layer decoded-image crossfade, static SVG path styling,
 and a horizontal transform-scaled progress line. The runtime assertion is:
 
@@ -89,9 +89,9 @@ document.querySelectorAll('.journey-scene img').length <= 3
 
 ## After architecture and measured acceptance checks
 
-- `src/content/journey.ts` now contains **9 narrative chapters** while all 15
-  detail routes remain available through `experienceSlugs` links.
-- `JourneyPage` renders 9 real sections (`85svh`–`100svh` responsive sizing)
+- `src/content/journey.ts` now contains **6 narrative chapters** while the
+  detailed Experience page keeps all 15 original routes available.
+- `JourneyPage` renders 6 real sections (`85svh`–`100svh` responsive sizing)
   with `data-journey-index` and an `IntersectionObserver` using a stable
   `-30% / -45%` root margin.
 - `JourneyCanvas` uses a decoded-image double buffer. During a transition the
@@ -126,6 +126,15 @@ Work, Experience, Journey, About, with Contact as the visible CTA; Résumé and
 language controls remain. `/projects`, `/capabilities`, `/contact`, and the
 localized legacy routes remain valid.
 
+The follow-up storytelling pass consolidates the Journey narrative to six
+chapters: Origins; Learning Through Operations; Building Community; Finance and
+Analytics Transition; Building Decision Tools; and Boston Chapter. The fixed
+rail now translates with `transform` so the active node stays centered while
+nearby years remain visible. Full detail remains in Experience, where timeline
+nodes now sit above their cards with a minimum 80px separation and no text/node
+collision. About's How I Work section is an editorial glass card with a
+responsive one-column mobile layout.
+
 ## Tests and evidence
 
 Commands run after the changes:
@@ -136,6 +145,7 @@ node_modules/typescript/bin/tsc --noEmit -p tsconfig.node.json  PASS
 node_modules/vite/bin/vite.js build                            PASS
 node_modules/eslint/bin/eslint.js .                            PASS
 NODE_PATH=<workspace Playwright modules> node tests/journey.playwright.mjs  PASS
+NODE_PATH=<workspace Playwright modules> node tests/responsive-layout.playwright.mjs  PASS
 ```
 
 `pnpm install`, `pnpm build`, and `pnpm lint` were attempted first as required;
@@ -163,6 +173,7 @@ Screenshots captured for review:
   `src/main.tsx`
 - `src/styles.css` (removed duplicate/legacy overview and Journey rules)
 - `tests/journey.playwright.mjs`
+- `tests/responsive-layout.playwright.mjs`
 
 ## Removed legacy CSS and runtime patterns
 
@@ -177,6 +188,6 @@ added to resolve the cascade.
 - A full Chrome DevTools Performance trace, exact compositor-layer count, and
   Slow-4G/cache-disabled run require a manually attached DevTools session; the
   local Playwright sweep covers the deterministic DOM and route assertions.
-- The mobile progress rail intentionally scrolls horizontally so all nine
+- The mobile progress rail intentionally translates horizontally so the six
   chapter controls retain a 44px touch target; the document itself remains
   overflow-free.

@@ -12,7 +12,7 @@ import { createRequire } from 'node:module'
 const require = createRequire(import.meta.url)
 const { chromium } = require('playwright')
 const baseUrl = process.env.BASE_URL || 'http://127.0.0.1:5173'
-const chapterCount = 9
+const chapterCount = 6
 
 function check(condition, message) {
   if (!condition) throw new Error(message)
@@ -35,9 +35,9 @@ async function journeySweep(page, locale) {
     check(await page.locator('.journey-scene img').evaluateAll((images) => images.every((image) => image.complete && image.naturalWidth > 0)), `${locale}: chapter ${index} has an unloaded scene`)
   }
 
-  await page.locator('[data-journey-index="8"]').scrollIntoViewIfNeeded()
+  await page.locator('[data-journey-index="5"]').scrollIntoViewIfNeeded()
   await page.waitForTimeout(260)
-  check((await page.locator('[data-journey-index="8"] h2').allTextContents()).some((text) => text.trim().length > 0), `${locale}: Boston chapter title is missing`)
+  check((await page.locator('[data-journey-index="5"] h2').allTextContents()).some((text) => text.trim().length > 0), `${locale}: Boston chapter title is missing`)
   check((await page.locator('.progress-line i').evaluate((node) => getComputedStyle(node).transform)) !== 'none', `${locale}: progress rail did not fill`)
 
   // A rapid sweep catches stale async scene swaps and observer races.
@@ -63,10 +63,10 @@ async function run() {
       node.classList.remove('is-transitioning')
       return Number.parseFloat(duration) <= 0.001
     }), 'reduced motion did not shorten scene transition')
-    await desktop.locator('.progress-dots button').nth(7).focus()
+    await desktop.locator('.progress-dots button').nth(4).focus()
     await desktop.keyboard.press('Enter')
     await desktop.waitForTimeout(100)
-    check(await desktop.locator('[data-journey-index="7"].is-active').count() === 1, 'keyboard progress navigation failed')
+    check(await desktop.locator('[data-journey-index="4"].is-active').count() === 1, 'keyboard progress navigation failed')
     await journeySweep(desktop, 'zh-tw')
     await desktop.close()
 
