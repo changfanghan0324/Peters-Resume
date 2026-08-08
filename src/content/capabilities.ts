@@ -1,78 +1,69 @@
-export type CapabilityStatus = 'demonstrated' | 'developing'
-export type CapabilityCategory = 'Finance' | 'Analytics' | 'Technical' | 'Business' | 'Leadership' | 'Communication' | 'Product'
+import type { Language } from './language'
 
+export type CapabilityStatus = 'demonstrated' | 'developing'
+export type CapabilityCategory = 'finance' | 'analytics' | 'technical' | 'business' | 'communication'
+type Localized = Record<Language, string>
+
+export type CapabilityEvidence = { label: Localized; href: string; type: 'project' | 'experience' | 'education' | 'credential' | 'artifact' }
 export type Capability = {
-  name: string
+  id: string
+  name: Localized
   category: CapabilityCategory
   status: CapabilityStatus
-  evidence: string
-  detail: string
-  href: string
-}
-
-const demonstrated: Record<CapabilityCategory, string[]> = {
-  Finance: ['Corporate Finance', 'Financial Analysis', 'Capital Budgeting', 'Financial Modeling', 'Forecasting', 'Time Value of Money', 'Compound-growth Modeling', 'NPV', 'IRR', 'Financial Statement Analysis', 'Investment Analysis', 'Portfolio Analysis', 'Scenario Analysis', 'Risk-and-return Analysis', 'Budgeting', 'Pricing Research', 'Market Research', 'Competitive Analysis', 'Data-driven Financial Decision-making'],
-  Analytics: ['Business Analytics', 'Financial Analytics', 'Data Analysis', 'Statistics Fundamentals', 'Forecasting', 'Scenario Modeling', 'Data Visualization', 'Excel Data Visualization', 'KPI Analysis', 'Trend Analysis', 'Dashboard Thinking', 'Business Intelligence Fundamentals', 'Translating Data into Actionable Insights', 'Structured Problem-solving'],
-  Technical: ['Python', 'NumPy', 'SQL', 'Git', 'GitHub', 'Next.js', 'HTML', 'CSS', 'Vercel', 'Shopify', 'Canva', 'Microsoft Office', 'Excel', 'TypeScript Web Development', 'Deployment Workflow', 'Pull Requests', 'Version Control', 'Repository Management', 'Product Iteration', 'Responsive Web Interfaces', 'Error Debugging'],
-  Business: ['Market Research', 'Competitive Analysis', 'Pricing Strategy', 'Product Positioning', 'Product Development', 'Customer Validation', 'Go / No-go Analysis', 'Budget Management', 'Vendor Sourcing', 'Manufacturer Evaluation', 'Business Case Development', 'Scenario Planning', 'Strategic Decision-making', 'Product Roadmapping', 'User Journey Design', 'Data-driven Decision-making', 'Project Execution', 'Risk Assessment'],
-  Leadership: ['Team Leadership', 'Staff Coordination', 'Employee Training', 'Event Planning', 'Vendor Management', 'Budget Allocation', 'Membership Growth', 'Community Building', 'On-site Logistics', 'Contingency Planning', 'Cash Reconciliation', 'Order Flow Management', 'Customer Service', 'Resource Allocation', 'Conflict Resolution', 'Cross-functional Coordination', 'Operating Under Pressure'],
-  Communication: ['Bilingual Communication', 'Chinese', 'English', 'Cross-cultural Communication', 'Teaching', 'Tutoring', 'Public Speaking', 'Presentation', 'Explaining Complex Concepts', 'Individualized Instruction', 'Active Listening', 'Stakeholder Communication', 'Relationship Building', 'Student Support', 'Audience Adaptation'],
-  Product: ['Product Ideation', 'MVP Development', 'Web Product Development', 'User-centered Design', 'Product Validation', 'Market Validation', 'Founder Decision-making', 'Self-funded Budget Management', 'UI / UX Thinking', 'Product Iteration', 'Deployment', 'Multilingual Product Design', 'Educational Technology', 'FinTech Product Development'],
-}
-
-const developing: Record<CapabilityCategory, string[]> = {
-  Finance: ['Equity Research', 'Backtesting', 'Portfolio Risk Analytics', 'Benchmark Analysis', 'DCF Valuation', 'Comparable-company Analysis', 'Sharpe Ratio', 'Maximum Drawdown', 'Beta', 'Correlation Analysis', 'Value at Risk', 'Corporate Credit Analysis', 'Debt Capacity', 'Credit Risk', 'DSCR', 'Interest Coverage', 'Covenant Analysis', 'Stress Testing', 'Credit Memo Writing', 'FP&A', 'Working Capital Management', 'Cash Flow Forecasting', 'Margin Analysis'],
-  Analytics: ['Time-Series Forecasting', 'Variance Decomposition', 'Sensitivity Analysis', 'Risk Modeling', 'Credit Scoring', 'Reverse-stress Analysis', 'Financial Engine Validation'],
-  Technical: ['pandas', 'FastAPI', 'PostgreSQL', 'API Design', 'Automated Testing', 'Data Pipelines', 'Power BI', 'DAX', 'Power Query', 'Power Automate', 'Accessibility Testing', 'Localization', 'Traditional Chinese Interface Design'],
-  Business: ['Business Partnering', 'Management Reporting', 'Recommendation Development', 'Cross-functional Decision Support'],
-  Leadership: ['Executive Presentation', 'People-centered Leadership'],
-  Communication: ['Management Communication', 'Presentation to Executives'],
-  Product: ['Deterministic Financial Engine Design', 'Independent Cross-model Verification'],
-}
-
-const evidenceByCategory: Record<CapabilityCategory, { evidence: string; detail: string; href: string }> = {
-  Finance: { evidence: 'B.S. Finance · UVU + finance products', detail: 'Supported by finance coursework and applied modeling in the Investment Growth Calculator and InvestIQ.', href: '/experience/uvu-graduation' },
-  Analytics: { evidence: 'Education + portfolio projects', detail: 'Applied through finance coursework, scenario models, dashboards, and decision-support product development.', href: '/projects' },
-  Technical: { evidence: 'Public GitHub repositories', detail: 'Demonstrated through TypeScript and Python repositories, version control, debugging, responsive interfaces, and Vercel deployment.', href: 'https://github.com/changfanghan0324' },
-  Business: { evidence: 'Mochilune + Chinese Club', detail: 'Applied to market validation, pricing, sourcing, budgets, go / no-go judgment, and resource allocation.', href: '/experience/mochilune' },
-  Leadership: { evidence: 'Chinese Club + Sukiya + Night Market', detail: 'Built through community growth, frontline operations, team coordination, training, and live-event execution.', href: '/experience/uvu-community' },
-  Communication: { evidence: 'Chinese TA + study-abroad coordination', detail: 'Built through individualized teaching, public speaking, active listening, and cross-cultural stakeholder coordination.', href: '/experience/chinese-teaching-assistant' },
-  Product: { evidence: 'Tutor Platform + InvestIQ + Mochilune', detail: 'Applied from MVP definition and user journeys through validation, iteration, deployment, and evidence-based product decisions.', href: '/projects' },
-}
-
-const developingEvidence: Partial<Record<string, { evidence: string; detail: string; href: string }>> = {
-  'Equity Research': { evidence: 'InvestIQ · In development', detail: 'Part of the active investment analytics product scope; presented as developing until validated by completed analysis and artifacts.', href: '/experience/investiq' },
-  'DCF Valuation': { evidence: 'InvestIQ · In development', detail: 'Planned and being strengthened within the investment decision-support workflow.', href: '/experience/investiq' },
-  'Portfolio Risk Analytics': { evidence: 'InvestIQ · In development', detail: 'Risk and return presentation is active; advanced portfolio metrics remain explicitly marked as developing.', href: '/experience/investiq' },
-  'Corporate Credit Analysis': { evidence: 'Northstar Credit Platform · In development', detail: 'Being developed through a deterministic credit engine covering debt capacity, coverage, stress testing, and validation.', href: '/experience/northstar-credit-platform' },
-  'DSCR': { evidence: 'Northstar Credit Platform · In development', detail: 'A core model scope item, not represented as an advanced completed capability.', href: '/experience/northstar-credit-platform' },
-  'Stress Testing': { evidence: 'Northstar Credit Platform · In development', detail: 'Being strengthened through downside, severe, and reverse-stress model design.', href: '/experience/northstar-credit-platform' },
-  'FastAPI': { evidence: 'Project architecture · Planned', detail: 'Part of the planned service architecture; retained under in-development skills.', href: '/experience/northstar-credit-platform' },
-  'PostgreSQL': { evidence: 'Project architecture · Planned', detail: 'Part of the planned data layer and therefore not shown as a completed advanced skill.', href: '/projects' },
-  'FP&A': { evidence: 'FP&A Decision Platform · Planned', detail: 'Planned for September 2026 and kept separate from demonstrated skills until implementation evidence exists.', href: '/experience/corporate-finance-fpa-platform' },
-  'Power BI': { evidence: 'FP&A Decision Platform · Planned', detail: 'Included in the planned project stack and intentionally labeled in development.', href: '/experience/corporate-finance-fpa-platform' },
+  evidenceItems: CapabilityEvidence[]
+  explanation: Localized
+  lastVerifiedAt?: string
 }
 
 export const capabilities: Capability[] = [
-  ...Object.entries(demonstrated).flatMap(([category, names]) => names.map((name) => ({ name, category: category as CapabilityCategory, status: 'demonstrated' as const, ...evidenceByCategory[category as CapabilityCategory] }))),
-  ...Object.entries(developing).flatMap(([category, names]) => names.map((name) => ({
-    name,
-    category: category as CapabilityCategory,
-    status: 'developing' as const,
-    ...(developingEvidence[name] ?? {
-      evidence: `${category} project scope · In development`,
-      detail: 'This capability is currently being strengthened through active or planned project work and is not represented as advanced.',
-      href: '/projects',
-    }),
-  }))),
+  {
+    id: 'financial-analysis', name: { en: 'Financial Analysis', zh: '財務分析' }, category: 'finance', status: 'demonstrated',
+    evidenceItems: [{ label: { en: 'B.S. Finance · UVU', zh: 'Utah Valley University · 財務學士' }, href: '/experience/uvu-graduation', type: 'education' }, { label: { en: 'InvestIQ', zh: 'InvestIQ' }, href: '/projects/investiq', type: 'project' }],
+    explanation: { en: 'Finance coursework and applied investment products connect statements, assumptions, and decisions.', zh: '財務課程與投資產品經驗，將報表、假設與決策連結起來。' }, lastVerifiedAt: '2026-08-08',
+  },
+  {
+    id: 'financial-modeling', name: { en: 'Financial Modeling', zh: '財務建模' }, category: 'finance', status: 'demonstrated',
+    evidenceItems: [{ label: { en: 'Investment Growth Calculator', zh: 'Investment Growth Calculator' }, href: '/projects/investment-growth-calculator', type: 'project' }, { label: { en: 'Financial modeling coursework', zh: '財務建模課程基礎' }, href: '/experience/uvu-graduation', type: 'education' }],
+    explanation: { en: 'Built an early MVP around compound growth, recurring contributions, and scenario assumptions.', zh: '以複利成長、定期投入與情境假設建立早期 MVP。' }, lastVerifiedAt: '2026-08-08',
+  },
+  {
+    id: 'business-analytics', name: { en: 'Business Analytics', zh: '商業分析' }, category: 'analytics', status: 'demonstrated',
+    evidenceItems: [{ label: { en: 'Incoming M.S. Business Analytics · Boston University', zh: '即將就讀 Boston University 商業分析碩士' }, href: '/experience/boston-university', type: 'education' }, { label: { en: 'Portfolio decision tools', zh: '作品集決策工具' }, href: '/projects', type: 'project' }],
+    explanation: { en: 'Combines a finance foundation with structured analysis, visualization, and decision-support product work.', zh: '結合財務基礎、結構化分析、視覺化與決策支援產品工作。' }, lastVerifiedAt: '2026-08-08',
+  },
+  {
+    id: 'scenario-analysis', name: { en: 'Scenario Analysis', zh: '情境分析' }, category: 'analytics', status: 'demonstrated',
+    evidenceItems: [{ label: { en: 'Investment Growth Calculator', zh: 'Investment Growth Calculator' }, href: '/projects/investment-growth-calculator', type: 'project' }, { label: { en: 'Mochilune go / no-go decision', zh: 'Mochilune 推出／暫停判斷' }, href: '/experience/mochilune', type: 'experience' }],
+    explanation: { en: 'Uses explicit assumptions and alternatives to make financial and product decisions easier to compare.', zh: '用明確假設與替代情境，讓財務與產品決策更容易比較。' }, lastVerifiedAt: '2026-08-08',
+  },
+  {
+    id: 'investment-analytics', name: { en: 'Investment Analytics', zh: '投資分析' }, category: 'finance', status: 'demonstrated',
+    evidenceItems: [{ label: { en: 'InvestIQ · active public repository', zh: 'InvestIQ · 公開進行中 repository' }, href: '/projects/investiq', type: 'project' }, { label: { en: 'Investment Growth Calculator', zh: 'Investment Growth Calculator' }, href: '/projects/investment-growth-calculator', type: 'project' }],
+    explanation: { en: 'Applies financial questions to an evolving public product; advanced research claims remain clearly in development.', zh: '把財務問題應用到持續迭代的公開產品；進階研究聲明仍清楚標示為發展中。' }, lastVerifiedAt: '2026-08-08',
+  },
+  {
+    id: 'corporate-credit-analysis', name: { en: 'Corporate Credit Analysis', zh: '企業信用分析' }, category: 'finance', status: 'developing',
+    evidenceItems: [{ label: { en: 'Northstar Credit Platform · in development', zh: 'Northstar Credit Platform · 開發中' }, href: '/projects/northstar-credit-platform', type: 'project' }],
+    explanation: { en: 'Being strengthened through a deterministic credit engine covering debt capacity, DSCR, coverage, stress testing, and validation.', zh: '透過確定性信用引擎持續建立，範圍包含債務承受力、DSCR、保障倍數、壓力測試與驗證。' }, lastVerifiedAt: '2026-08-08',
+  },
+  {
+    id: 'technical-product-development', name: { en: 'Python & TypeScript Product Development', zh: 'Python 與 TypeScript 產品開發' }, category: 'technical', status: 'demonstrated',
+    evidenceItems: [{ label: { en: 'Public GitHub repositories', zh: '公開 GitHub repositories' }, href: 'https://github.com/changfanghan0324', type: 'artifact' }, { label: { en: 'Tutor Platform · live site', zh: 'Tutor Platform · 線上網站' }, href: 'https://utah-tutor-web.vercel.app', type: 'project' }],
+    explanation: { en: 'Uses version control, responsive interfaces, debugging, and deployment workflows to turn analysis into usable products.', zh: '運用版本控制、響應式介面、除錯與部署流程，把分析轉成可使用的產品。' }, lastVerifiedAt: '2026-08-08',
+  },
+  {
+    id: 'cross-cultural-stakeholder-communication', name: { en: 'Cross-cultural Stakeholder Communication', zh: '跨文化利害關係人溝通' }, category: 'communication', status: 'demonstrated',
+    evidenceItems: [{ label: { en: 'Chinese Teaching Assistant', zh: '中文助教' }, href: '/experience/chinese-teaching-assistant', type: 'experience' }, { label: { en: 'Study-abroad coordination', zh: '海外學習計畫協調' }, href: '/experience/study-abroad-coordination', type: 'experience' }],
+    explanation: { en: 'Adapts explanations, aligns stakeholders, and keeps communication practical across different backgrounds.', zh: '依不同背景調整解釋、協調利害關係人，並維持溝通的實用性。' }, lastVerifiedAt: '2026-08-08',
+  },
 ]
 
-export const capabilityCategories = Object.keys(demonstrated) as CapabilityCategory[]
+export const capabilityCategories: CapabilityCategory[] = ['finance', 'analytics', 'technical', 'business', 'communication']
 
 export const strengths = [
-  { name: 'Individualization', summary: 'Understands the distinct needs and strengths of different people.', workplace: ['Personalized Problem-solving', 'Team Composition', 'Audience Adaptation'], evidence: 'Individualized teaching and people-centered community leadership.' },
-  { name: 'Empathy', summary: 'Recognizes other people’s emotions, perspectives, and context.', workplace: ['Empathy', 'Active Listening', 'Relationship Building'], evidence: 'Student support, tutoring, and cross-cultural communication.' },
-  { name: 'Connectedness', summary: 'Builds links across people, cultures, communities, and ideas.', workplace: ['Cross-cultural Collaboration', 'Community Building', 'Stakeholder Alignment'], evidence: 'Chinese Club growth and multi-country study-abroad coordination.' },
-  { name: 'Activator', summary: 'Moves ideas toward action and learns through doing.', workplace: ['Action Orientation', 'Initiative', 'Project Execution'], evidence: 'Launching community events, products, and public project iterations.' },
-  { name: 'Restorative', summary: 'Finds problems, investigates causes, and works toward practical repairs.', workplace: ['Troubleshooting', 'Continuous Improvement', 'Structured Problem-solving'], evidence: 'Operational problem solving, debugging, and evidence-based go / no-go decisions.' },
+  { name: 'Individualization', summary: { en: 'Adapts explanations and support to the individual in front of him.', zh: '依照眼前每個人的需求調整解釋與支持。' }, workplace: { en: ['Personalized problem-solving', 'Team composition', 'Audience adaptation'], zh: ['個人化問題解決', '團隊組成', '受眾調整'] }, evidence: { en: 'Chinese teaching support across different proficiency levels.', zh: '針對不同程度學習者提供中文教學支持。' } },
+  { name: 'Empathy', summary: { en: 'Recognizes another person’s perspective and context before choosing an approach.', zh: '在選擇方法前先理解他人的觀點與脈絡。' }, workplace: { en: ['Active listening', 'Relationship building', 'Student support'], zh: ['主動傾聽', '關係建立', '學生支持'] }, evidence: { en: 'Student support, tutoring, and cross-cultural communication.', zh: '學生支持、家教平台與跨文化溝通。' } },
+  { name: 'Connectedness', summary: { en: 'Builds links across people, cultures, communities, and ideas.', zh: '連結人、文化、社群與想法。' }, workplace: { en: ['Cross-cultural collaboration', 'Community building', 'Stakeholder alignment'], zh: ['跨文化協作', '社群建立', '利害關係人對齊'] }, evidence: { en: 'Chinese Club growth and multi-country study-abroad coordination.', zh: 'Chinese Club 成長與多國海外學習計畫協調。' } },
+  { name: 'Activator', summary: { en: 'Moves from an idea toward implementation and learns through doing.', zh: '把想法推向實作，並在行動中學習。' }, workplace: { en: ['Action orientation', 'Initiative', 'Project execution'], zh: ['行動導向', '主動性', '專案執行'] }, evidence: { en: 'Community events, public MVPs, and project iterations.', zh: '社群活動、公開 MVP 與專案迭代。' } },
+  { name: 'Restorative', summary: { en: 'Investigates problems and works toward practical repairs.', zh: '調查問題，並朝向實際修正前進。' }, workplace: { en: ['Troubleshooting', 'Continuous improvement', 'Structured problem-solving'], zh: ['除錯', '持續改善', '結構化問題解決'] }, evidence: { en: 'Operational problem solving, debugging, and go / no-go decisions.', zh: '營運問題解決、除錯與推出／暫停判斷。' } },
 ]

@@ -2,7 +2,7 @@ import type { Language } from './language'
 
 type Localized = Record<Language, string>
 
-export type ExperienceCategory = 'life' | 'leadership' | 'operations' | 'education' | 'entrepreneurship' | 'project'
+export type ExperienceCategory = 'personal' | 'leadership' | 'operations' | 'education' | 'entrepreneurship' | 'project'
 
 export type Experience = {
   slug: string
@@ -28,19 +28,19 @@ export type Experience = {
 
 export const experiences: Experience[] = [
   {
-    slug: 'taiwan-origins', year: '2003', category: 'life',
-    title: { en: 'A beginning in Taipei', zh: '從台北開始的人生路徑' },
-    role: { en: 'Born March 24, 2003', zh: '出生於 2003 年 3 月 24 日' },
-    place: { en: 'Taipei, Taiwan', zh: '台灣台北' },
-    period: { en: 'March 24, 2003', zh: '2003 年 3 月 24 日' },
-    summary: { en: 'The first point on a path that would later connect Taipei, Utah, and Boston.', zh: '人生的第一個座標，後來一路連結台北、猶他州與波士頓。' },
-    challenge: { en: 'This is the factual starting point of the journey: born in Taipei, Taiwan, on March 24, 2003.', zh: '這是整段人生路徑的真實起點：2003 年 3 月 24 日出生於台灣台北。' },
-    built: { en: 'The path later expands through education, operations, leadership, entrepreneurship, and financial technology.', zh: '這條路徑後來延伸至教育、營運、領導、創業與金融科技。' },
-    outcome: { en: 'A cross-cultural perspective now connects the communities, products, and decisions represented throughout this portfolio.', zh: '跨文化視角串起這個作品集中的社群、產品與每一次決策。' },
-    highlights: { en: ['Born March 24, 2003', 'Taipei, Taiwan', 'Later: Utah and Boston'], zh: ['2003 年 3 月 24 日出生', '台灣台北', '後來前往猶他州與波士頓'] },
-    skills: ['Cross-cultural Perspective', 'Adaptability'], credentials: ['March 24, 2003', 'Taipei, Taiwan'],
-    sectionLabels: { en: ['Origins', 'The path expands', 'The thread forward'], zh: ['起點', '路徑展開', '延續至今'] },
-    scene: 'assets/scenes/origins.png',
+    slug: 'personal-journey', year: 'Path', category: 'personal',
+    title: { en: 'A cross-cultural point of view', zh: '跨文化的視角' },
+    role: { en: 'Personal journey', zh: '個人路徑' },
+    place: { en: 'Taiwan · Utah · Boston', zh: '台灣 · 猶他州 · 波士頓' },
+    period: { en: 'Personal context', zh: '個人背景' },
+    summary: { en: 'A cross-cultural perspective connecting the communities, products, and decisions represented throughout this portfolio.', zh: '跨文化視角串起這個作品集中的社群、產品與每一次決策。' },
+    challenge: { en: 'Carry context across different communities, classrooms, operating environments, and product questions.', zh: '在不同社群、課堂、營運環境與產品問題之間保留脈絡。' },
+    built: { en: 'A path shaped by finance education, frontline operations, community leadership, teaching, entrepreneurship, and analytical products.', zh: '由財務教育、前線營運、社群領導、教學、創業與分析產品共同形塑的路徑。' },
+    outcome: { en: 'The public portfolio focuses on professional evidence while keeping private identity details private.', zh: '公開作品集聚焦專業證據，同時保護私人身分細節。' },
+    highlights: { en: ['Cross-cultural perspective', 'Adaptability', 'Context across Taiwan, Utah & Boston'], zh: ['跨文化視角', '適應力', '串連台灣、猶他州與波士頓的脈絡'] },
+    skills: ['Cross-cultural Communication', 'Adaptability'],
+    sectionLabels: { en: ['Context', 'The path expands', 'Public evidence'], zh: ['背景', '路徑展開', '公開證據'] },
+    scene: 'assets/scenes/origins.webp',
   },
   {
     slug: 'asian-night-market', year: '2019', category: 'leadership',
@@ -54,7 +54,7 @@ export const experiences: Experience[] = [
     outcome: { en: 'The event brought together eight participating vendors and approximately 600 attendees.', zh: '活動成功串連八家攤商並吸引約 600 名參與者。' },
     highlights: { en: ['4-person organizing team', 'Approximately 600 attendees', '8 participating vendors', 'Promotion, logistics & contingency planning'], zh: ['四人籌備團隊', '約 600 名參與者', '八家參與攤商', '宣傳、物流與應變計畫'] },
     skills: ['Team Leadership', 'Event Planning', 'Vendor Recruitment', 'Logistics Coordination', 'Promotion', 'Contingency Planning', 'Stakeholder Management', 'On-site Problem Solving'],
-    scene: 'assets/scenes/night-market.png',
+    scene: 'assets/scenes/night-market.webp',
   },
   {
     slug: 'sukiya-operations', year: '2020–21', category: 'operations',
@@ -68,7 +68,7 @@ export const experiences: Experience[] = [
     outcome: { en: 'Developed repeatable frontline leadership habits under real operational pressure.', zh: '在實際營運壓力下建立可重複的前線領導與流程執行能力。' },
     highlights: { en: ['Approximately 400 customers daily', 'NT$70K+ daily cash reconciliation', '3 new employees trained', 'Peak-period staff and order coordination'], zh: ['每日約 400 名顧客', '每日 70K+ 新台幣現金核對', '培訓三名新進員工', '尖峰時段人員與訂單協調'] },
     skills: ['Operations Management', 'Staff Coordination', 'Order Flow Management', 'Cash Reconciliation', 'Customer Service', 'Employee Training', 'Quality Control', 'Working Under Pressure', 'Process Execution', 'Frontline Leadership'],
-    scene: 'assets/scenes/sukiya.png',
+    scene: 'assets/scenes/sukiya.webp',
   },
   {
     slug: 'uvu-start', year: '2021', category: 'education',
@@ -82,7 +82,7 @@ export const experiences: Experience[] = [
     outcome: { en: 'The university experience became the base for later leadership, teaching, entrepreneurship, and FinTech projects.', zh: '大學經驗成為後續領導、教學、創業與金融科技專案的基礎。' },
     highlights: { en: ['Entered August 2021', 'Finance & business management', 'Orem, Utah'], zh: ['2021 年 8 月入學', '財務與商業管理', '猶他州 Orem'] },
     skills: ['Corporate Finance', 'Financial Analysis', 'Business Management', 'Economics', 'Strategic Decision-making'],
-    scene: 'assets/scenes/uvu.png',
+    scene: 'assets/scenes/uvu.webp',
   },
   {
     slug: 'uvu-community', year: '2022–25', category: 'leadership',
@@ -96,7 +96,7 @@ export const experiences: Experience[] = [
     outcome: { en: 'Membership grew more than twelvefold, from 21 to 264 members.', zh: '會員人數成長超過十二倍，從 21 人增加至 264 人。' },
     highlights: { en: ['21 → 264 members', '2–4 events per month', 'Approximately $250 per-event budget', 'Multicultural community building'], zh: ['21 → 264 名會員', '每月 2–4 場活動', '每場約 250 美元預算', '多元文化社群建立'] },
     skills: ['Organizational Leadership', 'Membership Growth', 'Budget Management', 'Event Programming', 'Marketing and Promotion', 'Vendor Coordination', 'Community Building', 'Strategic Planning', 'Resource Allocation', 'Cross-cultural Leadership'],
-    scene: 'assets/scenes/uvu.png',
+    scene: 'assets/scenes/uvu.webp',
   },
   {
     slug: 'chinese-teaching-assistant', year: '2022–25', category: 'education',
@@ -110,7 +110,7 @@ export const experiences: Experience[] = [
     outcome: { en: 'Strengthened the ability to translate complex ideas for a specific audience — a skill now applied to financial products and analytics.', zh: '強化針對特定受眾解釋複雜概念的能力，並延伸應用於財務產品與分析。' },
     highlights: { en: ['4 course sections', 'Approximately 60 students', 'Individualized support', 'Cross-cultural instruction'], zh: ['四個課程班級', '約 60 名學生', '個別化支持', '跨文化教學'] },
     skills: ['Teaching', 'Presentation', 'Public Speaking', 'Cross-cultural Communication', 'Individualized Instruction', 'Explaining Complex Concepts', 'Student Support', 'Interpersonal Communication', 'Active Listening', 'Adaptability'],
-    scene: 'assets/scenes/uvu.png',
+    scene: 'assets/scenes/uvu.webp',
   },
   {
     slug: 'study-abroad-coordination', year: '2023', category: 'operations',
@@ -124,7 +124,7 @@ export const experiences: Experience[] = [
     outcome: { en: 'Built an operational approach centered on clear records, stakeholder alignment, and adaptable on-site coordination.', zh: '建立以清楚紀錄、利害關係人協調與彈性現場執行為核心的營運方式。' },
     highlights: { en: ['Expense tracking', 'International logistics', 'Student, hotel & faculty communication', 'Cross-cultural coordination'], zh: ['費用追蹤', '國際物流', '學生、飯店與教師溝通', '跨文化協調'] },
     skills: ['Expense Tracking', 'International Logistics', 'Vendor Communication', 'Cross-cultural Coordination', 'Travel Planning', 'Stakeholder Management', 'Administrative Organization'],
-    scene: 'assets/scenes/study-abroad.png',
+    scene: 'assets/scenes/study-abroad.webp',
   },
   {
     slug: 'uvu-graduation', year: '2025', category: 'education',
@@ -139,7 +139,7 @@ export const experiences: Experience[] = [
     highlights: { en: ['B.S. in Finance', 'A.S. in Business Management', 'GPA 3.55 / 4.0', 'Graduated August 2025'], zh: ['財務學士', '商業管理副學士', 'GPA 3.55 / 4.0', '2025 年 8 月畢業'] },
     skills: ['Corporate Finance', 'Financial Analysis', 'Capital Budgeting', 'Time Value of Money', 'NPV', 'IRR', 'Investment Analysis', 'Financial Statement Analysis', 'Economics', 'Budgeting', 'Strategic Decision-making', 'Python', 'NumPy', 'Git/GitHub', 'Statistics', 'Excel Data Visualization'],
     credentials: ['B.S. in Finance', 'A.S. in Business Management', 'GPA 3.55 / 4.0'],
-    scene: 'assets/scenes/uvu.png',
+    scene: 'assets/scenes/uvu.webp',
   },
   {
     slug: 'mochilune', year: 'APR 2026', category: 'entrepreneurship',
@@ -153,7 +153,7 @@ export const experiences: Experience[] = [
     outcome: { en: 'Paused the launch when risk and return were not compelling, limiting spend to $3,000 of a $10,000 budget.', zh: '在風險報酬不理想時暫停推出，將 10,000 美元預算中的支出控制在 3,000 美元。' },
     highlights: { en: ['Market, positioning & pricing research', 'Manufacturer sourcing and evaluation', '$3K of $10K budget used', 'Evidence-based go / no-go decision'], zh: ['市場、定位與定價研究', '製造商尋源與評估', '10K 預算中使用 3K', '以證據做出推出／暫停決策'] },
     skills: ['Entrepreneurship', 'Market Validation', 'Go / No-go Decision-making', 'Pricing Research', 'Manufacturer Sourcing', 'Product Positioning', 'Budget Control', 'Risk Assessment', 'Competitive Analysis', 'Vendor Evaluation', 'Strategic Judgment'],
-    scene: 'assets/scenes/mochilune.png',
+    scene: 'assets/scenes/mochilune.webp',
   },
   {
     slug: 'tutor-platform', year: 'MAY 2026', category: 'project',
@@ -167,7 +167,7 @@ export const experiences: Experience[] = [
     outcome: { en: 'Created a more coherent path for students and tutors to find information and coordinate support.', zh: '讓學生與家教更容易取得資訊並協調學習支持。' },
     highlights: { en: ['Tutor profiles', 'Organized learning resources', 'Scheduling & communication tools', 'Responsive user journey'], zh: ['家教檔案', '分類學習資源', '排程與溝通工具', '響應式使用者路徑'] },
     skills: ['Product Development', 'Web Development', 'User Journey Design', 'Tutor Marketplace Design', 'Scheduling Workflow', 'Information Architecture', 'Education Technology', 'Responsive Web Design', 'UI / UX Thinking', 'GitHub Deployment Workflow'],
-    scene: 'assets/scenes/tutor.png',
+    scene: 'assets/scenes/tutor.webp',
     links: [{ label: 'GitHub', href: 'https://github.com/changfanghan0324/utah.chinese.tutor' }, { label: 'Live site', href: 'https://utah-tutor-web.vercel.app' }],
   },
   {
@@ -182,7 +182,7 @@ export const experiences: Experience[] = [
     outcome: { en: 'The calculator became the early MVP that later expanded into InvestIQ.', zh: '此計算器成為後續擴充為 InvestIQ 的早期 MVP。' },
     highlights: { en: ['Compound-growth modeling', 'Recurring contributions', '3 investment scenarios', 'Early MVP for InvestIQ'], zh: ['複利成長建模', '定期投入', '三種投資情境', 'InvestIQ 的早期 MVP'] },
     skills: ['Compound-growth Modeling', 'Financial Modeling', 'Scenario Analysis', 'Recurring-contribution Modeling', 'Portfolio Projection', 'Data Visualization', 'Long-term Financial Planning', 'Front-end Product Development'],
-    scene: 'assets/scenes/investment.png',
+    scene: 'assets/scenes/investment.webp',
   },
   {
     slug: 'investiq', year: 'JUL 2026', category: 'project',
@@ -197,7 +197,7 @@ export const experiences: Experience[] = [
     highlights: { en: ['U.S. stocks & ETFs', 'Personalized investment analytics', 'Public Vercel deployment', 'TypeScript-based product iteration'], zh: ['美國股票與 ETF', '個人化投資分析', '公開 Vercel 部署', 'TypeScript 產品迭代'] },
     skills: ['Investment Analytics', 'Portfolio Analysis', 'Scenario Analysis', 'Risk-and-return Analysis', 'TypeScript', 'Responsive Interface', 'GitHub Pull-request Workflow', 'Vercel', 'Product Iteration'],
     credentials: ['Status: In development', 'Repository created: July 28, 2026'],
-    scene: 'assets/scenes/investment-research.png',
+    scene: 'assets/scenes/investment-research.webp',
     links: [{ label: 'GitHub', href: 'https://github.com/changfanghan0324/investiq' }, { label: 'Live site', href: 'https://investiq-eight-xi.vercel.app' }],
   },
   {
@@ -213,7 +213,7 @@ export const experiences: Experience[] = [
     highlights: { en: ['Deterministic credit engine', 'Debt capacity, DSCR & coverage', 'Stress and reverse-stress analysis', 'Independent cross-model verification'], zh: ['確定性信用引擎', '債務承受力、DSCR 與保障倍數', '壓力與反向壓力分析', '獨立跨模型驗證'] },
     skills: ['Corporate Credit Analysis', 'Credit Underwriting', 'Financial Statement Spreading', 'Debt Capacity', 'Credit Risk Scoring', 'DSCR', 'Interest Coverage', 'Stress Testing', 'Reverse-stress Analysis', 'Covenant Analysis', 'Credit Memo Writing', 'Python', 'Testing and Model Validation'],
     credentials: ['Status: In development', 'Repository created: August 4, 2026'],
-    scene: 'assets/scenes/credit-risk.png',
+    scene: 'assets/scenes/credit-risk.webp',
     links: [{ label: 'GitHub', href: 'https://github.com/changfanghan0324/northstar-credit-platform' }],
   },
   {
@@ -229,7 +229,7 @@ export const experiences: Experience[] = [
     highlights: { en: ['Planned: driver-based forecasting', 'Budget, variance & margin analysis', 'Working capital & cash flow', 'Management recommendations'], zh: ['規劃：driver-based forecasting', '預算、差異與利潤分析', '營運資金與現金流', '管理建議'] },
     skills: ['FP&A', 'Budgeting', 'Forecasting', 'Variance Analysis', 'Driver-Based Modeling', 'Scenario Planning', 'Working Capital Management', 'Cash Flow Forecasting', 'Margin Analysis', 'Excel', 'Power BI', 'DAX', 'Power Query', 'Python', 'SQL'],
     credentials: ['Status: Planned', 'Planned start: September 2026'],
-    scene: 'assets/scenes/fpa-platform.png',
+    scene: 'assets/scenes/fpa-platform.webp',
   },
   {
     slug: 'boston-university', year: '2026–28', category: 'education',
@@ -244,14 +244,88 @@ export const experiences: Experience[] = [
     highlights: { en: ['Program start: September 2, 2026', 'Expected graduation: January 2028', 'M.S. in Business Analytics', 'Questrom School of Business'], zh: ['2026 年 9 月 2 日入學', '預計 2028 年 1 月畢業', '商業分析碩士', 'Questrom School of Business'] },
     skills: ['Business Analytics', 'Financial Analytics', 'Forecasting', 'Business Intelligence', 'Statistical Analysis', 'Financial Modeling', 'Strategy Analytics', 'Data Visualization'],
     credentials: ['Incoming M.S. Business Analytics Student', 'Expected January 2028'],
-    scene: 'assets/scenes/bu.png',
+    scene: 'assets/scenes/bu.webp',
   },
 ]
 
 export const profile = {
-  birthDate: '2003-03-24', birthPlace: 'Taipei, Taiwan', email: 'chang324@bu.edu', phone: '385-477-9823',
-  linkedin: 'https://linkedin.com/in/fang-han-chang-7657011b1', github: 'https://github.com/changfanghan0324',
-  instagram: 'https://www.instagram.com/rich_mochi7777/', handshake: 'https://app.joinhandshake.com/profiles/6pqze6', location: 'Boston, MA',
+  displayName: 'Peter (Fang Han) Chang',
+  email: 'chang324@bu.edu',
+  linkedin: 'https://linkedin.com/in/fang-han-chang-7657011b1',
+  github: 'https://github.com/changfanghan0324',
+  location: 'Boston, Massachusetts',
+}
+
+export type ProjectStatus = 'completed' | 'in-development' | 'roadmap'
+export type ProjectMeta = {
+  status: ProjectStatus
+  lastUpdated?: Localized
+  problem: Localized
+  targetUser: Localized
+  methodology: Localized
+  technology: Localized
+  financialRelevance: Localized
+  limitations: Localized
+  nextSteps: Localized
+  artifacts: Localized
+}
+
+export const projectMeta: Record<string, ProjectMeta> = {
+  'tutor-platform': {
+    status: 'completed', lastUpdated: { en: 'June 24, 2026', zh: '2026 年 6 月 24 日' },
+    problem: { en: 'Students and tutors needed a clearer path from profile discovery to learning support.', zh: '學生與家教需要從檔案查看到學習支援的清楚流程。' },
+    targetUser: { en: 'Students, tutors, and learning-support coordinators.', zh: '學生、家教與學習支援協調者。' },
+    methodology: { en: 'Mapped the user journey, grouped resources, and connected profiles with scheduling and communication.', zh: '整理使用者路徑、分類資源，並串接家教檔案、排程與溝通。' },
+    technology: { en: 'TypeScript, responsive web UI, GitHub, Vercel.', zh: 'TypeScript、響應式網頁介面、GitHub、Vercel。' },
+    financialRelevance: { en: 'Shows product thinking and workflow design that can make analytical services easier to use.', zh: '展現讓分析服務更容易使用的產品思維與流程設計。' },
+    limitations: { en: 'The public portfolio does not claim user counts, revenue, or learning outcomes.', zh: '公開作品集不宣稱使用者數量、營收或學習成果。' },
+    nextSteps: { en: 'Add authentic product screenshots and a short implementation walkthrough when approved for publication.', zh: '取得發布許可後補上真實產品截圖與簡短實作說明。' },
+    artifacts: { en: 'Public GitHub repository and live site supplied by the owner.', zh: '由本人提供的公開 GitHub repository 與線上網站。' },
+  },
+  'investment-growth-calculator': {
+    status: 'completed', lastUpdated: { en: 'July 2026', zh: '2026 年 7 月' },
+    problem: { en: 'Make recurring contributions and return assumptions easier to reason about over time.', zh: '讓使用者更容易理解定期投入與報酬假設的長期影響。' },
+    targetUser: { en: 'People exploring long-term investment planning.', zh: '探索長期投資規劃的人。' },
+    methodology: { en: 'Translate contribution, return, and scenario assumptions into an interactive financial model.', zh: '把投入、報酬與情境假設轉成互動式財務模型。' },
+    technology: { en: 'Interactive web interface and financial modeling logic.', zh: '互動式網頁介面與財務建模邏輯。' },
+    financialRelevance: { en: 'Early MVP for compound growth, recurring contributions, and portfolio projection.', zh: '以複利成長、定期投入與投資組合推估為核心的早期 MVP。' },
+    limitations: { en: 'No public artifact link or validated user outcome was supplied.', zh: '目前未提供公開成果連結或經驗證的使用者結果。' },
+    nextSteps: { en: 'Continue the product evolution through InvestIQ and publish artifacts after validation.', zh: '透過 InvestIQ 延伸產品，完成驗證後再發布成果檔案。' },
+    artifacts: { en: 'Project description supplied; public artifact link is not currently supplied.', zh: '已提供專案描述；目前尚未提供公開成果連結。' },
+  },
+  investiq: {
+    status: 'in-development', lastUpdated: { en: 'August 6, 2026 · repository activity', zh: '2026 年 8 月 6 日 · repository 活動' },
+    problem: { en: 'Move from a single growth calculator toward a broader, explainable investment decision-support workspace.', zh: '從單一成長計算器延伸為更完整且可解釋的投資決策支援工作區。' },
+    targetUser: { en: 'Individual investors and early-stage analysts working with U.S. stocks and ETFs.', zh: '研究美國股票與 ETF 的個人投資者與初階分析者。' },
+    methodology: { en: 'Iterate a public product around fundamentals, portfolio analytics, scenario comparison, and risk/return presentation.', zh: '以公司基本面、投資組合分析、情境比較與風險報酬呈現持續迭代公開產品。' },
+    technology: { en: 'TypeScript, Vercel, GitHub pull-request workflow.', zh: 'TypeScript、Vercel、GitHub pull-request workflow。' },
+    financialRelevance: { en: 'Turns investment research questions into visible assumptions, comparisons, and decision context.', zh: '把投資研究問題轉成可見的假設、比較與決策脈絡。' },
+    limitations: { en: 'The product is still in development; advanced metrics and research artifacts are not presented as completed evidence.', zh: '產品仍在開發中；進階指標與研究成果不會被呈現為已完成證據。' },
+    nextSteps: { en: 'Continue validation, publish authentic screenshots or reports, and document model assumptions.', zh: '持續驗證、發布真實截圖或報告，並記錄模型假設。' },
+    artifacts: { en: 'Public GitHub repository and live Vercel deployment.', zh: '公開 GitHub repository 與 Vercel 部署。' },
+  },
+  'northstar-credit-platform': {
+    status: 'in-development', lastUpdated: { en: 'August 6, 2026 · repository activity', zh: '2026 年 8 月 6 日 · repository 活動' },
+    problem: { en: 'Translate borrower financials and downside assumptions into explainable lending constraints and protections.', zh: '把借款企業財務資料與下行情境轉成可解釋的放款限制與保障條件。' },
+    targetUser: { en: 'Corporate banking, credit risk, and lending analysts.', zh: '企業銀行、信用風險與授信分析者。' },
+    methodology: { en: 'Build a deterministic engine with independent cross-model verification, transparent ratios, and stress scenarios.', zh: '建立具獨立跨模型驗證、透明比率與壓力情境的確定性引擎。' },
+    technology: { en: 'Python; planned Next.js, FastAPI, PostgreSQL, and automated testing.', zh: 'Python；規劃中的 Next.js、FastAPI、PostgreSQL 與自動化測試。' },
+    financialRelevance: { en: 'Models debt capacity, DSCR, interest coverage, covenant pressure, and lending recommendations.', zh: '建模債務承受力、DSCR、利息保障、covenant 壓力與授信建議。' },
+    limitations: { en: 'No claim is made about production deployment, prediction accuracy, or lending decisions.', zh: '不宣稱已上線、預測準確率或實際授信決策。' },
+    nextSteps: { en: 'Continue model validation, add authentic outputs, and document assumptions and edge cases.', zh: '持續模型驗證、補上真實輸出，並記錄假設與例外情況。' },
+    artifacts: { en: 'Public GitHub repository; no live demo supplied.', zh: '公開 GitHub repository；尚未提供線上示範。' },
+  },
+  'corporate-finance-fpa-platform': {
+    status: 'roadmap', lastUpdated: { en: 'Planned for September 2026', zh: '規劃於 2026 年 9 月' },
+    problem: { en: 'Help management connect budget variance to price, volume, mix, cost, working capital, and cash decisions.', zh: '協助管理層把預算差異連結到價格、銷量、組合、成本、營運資金與現金決策。' },
+    targetUser: { en: 'CFOs, FP&A teams, and operating leaders.', zh: 'CFO、FP&A 團隊與營運主管。' },
+    methodology: { en: 'Proposed driver-based forecasting, budget-versus-actual analysis, scenario planning, and management recommendations.', zh: '規劃 driver-based forecasting、預算與實際差異、情境規劃與管理建議。' },
+    technology: { en: 'Proposed Excel, Power BI, DAX, Power Query, Python, and SQL.', zh: '規劃使用 Excel、Power BI、DAX、Power Query、Python 與 SQL。' },
+    financialRelevance: { en: 'The intended scope connects operating drivers to EBITDA, cash flow, liquidity, and resource allocation.', zh: '規劃將營運驅動因子連結至 EBITDA、現金流、流動性與資源配置。' },
+    limitations: { en: 'Roadmap only. No implementation, artifact, user, or outcome is claimed.', zh: '目前僅為規劃，不宣稱已有實作、成果檔案、使用者或結果。' },
+    nextSteps: { en: 'Define the first driver model and confirm scope before implementation.', zh: '確認第一個 driver model 與範圍後再開始實作。' },
+    artifacts: { en: 'Artifact coming after validation.', zh: '完成驗證後補上成果檔案。' },
+  },
 }
 
 export function copy<T extends Localized>(value: T, language: Language) { return value[language] }

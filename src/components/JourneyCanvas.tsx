@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react'
+import { useI18n } from '../content/language'
 import type { Experience } from '../content/portfolio'
 
 type JourneyCanvasProps = {
@@ -9,9 +10,10 @@ type JourneyCanvasProps = {
   onOpen: (slug: string) => void
 }
 
-const assetUrl = (path: string) => new URL(path, document.baseURI).toString()
+const assetUrl = (path: string) => `/${path}`
 
 export default function JourneyCanvas({ experiences, progress, activeIndex, onHover, onOpen }: JourneyCanvasProps) {
+  const { language, t } = useI18n()
   const point = progress * (experiences.length - 1)
 
   return (
@@ -49,10 +51,10 @@ export default function JourneyCanvas({ experiences, progress, activeIndex, onHo
         onFocus={() => onHover(activeIndex)}
         onBlur={() => onHover(null)}
         onClick={() => onOpen(experiences[activeIndex].slug)}
-        aria-label={`Explore ${experiences[activeIndex].title.en}`}
+        aria-label={`${t.journey.more} ${experiences[activeIndex].title[language]}`}
       >
         <i />
-        <span>Explore this chapter</span>
+        <span>{t.journey.more}</span>
       </button>
     </div>
   )

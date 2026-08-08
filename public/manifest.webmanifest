@@ -1,0 +1,10 @@
+{
+  "name": "Peter Chang | Finance & Business Analytics",
+  "short_name": "Peter Chang",
+  "start_url": "/en",
+  "display": "standalone",
+  "background_color": "#07121F",
+  "theme_color": "#07121F",
+  "description": "Finance & Business Analytics portfolio.",
+  "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}
