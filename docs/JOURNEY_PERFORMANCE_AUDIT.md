@@ -158,6 +158,10 @@ Screenshots captured for review:
 - Baseline overview: `/private/tmp/peters-resume-overview-2026-08-08-final.png`
 - After overview/navigation: `/private/tmp/peters-resume-overview-after-2026-08-08.png`
 - After Journey desktop: `/private/tmp/peters-resume-journey-after-2026-08-08.png`
+- Final Journey desktop: `/private/tmp/journey-final.png`
+- Final Traditional Chinese mobile Journey: `/private/tmp/journey-final-zh.png`
+- Final Experience desktop: `/private/tmp/experience-final.png`
+- Final About / How I Work: `/private/tmp/about-how-work-final.png`
 
 ## Changed files
 
